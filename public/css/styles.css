@@ -46,6 +46,15 @@ label {
   padding: 0.25em 0;
 }
 
+ul {
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+}
+
+
 footer {
   margin-top: 2em;
   text-align: center;
