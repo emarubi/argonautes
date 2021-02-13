@@ -6,4 +6,6 @@ const mainController = require('./controllers/mainController');
 
 router.get('/', mainController.home);
 
+router.post('/addArgonaute', mainController.input);
+
 module.exports = router;

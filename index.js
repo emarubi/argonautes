@@ -12,6 +12,8 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./app/views"));
 app.use(express.static(path.join(__dirname, "./public")));
+// utiliser le middleware express.urlencoded pour récupérer les valeurs postées dans request.body
+app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 

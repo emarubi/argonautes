@@ -1,14 +1,25 @@
 const dataMapper = require("../dataMapper");
 
 const mainController = {
-    home: (request, response) => {
-        dataMapper.getAllArgonautes((error, results) => {
-            if (error) {
-                return response.status(500).send(error);
-            }
-            response.render('index', {argonautes: results.rows});
-        })
-    }
+    async home(_, response, next) {
+        try {
+            const argonautes = await dataMapper.getAllArgonautes();
+            response.render('index', {argonautes});
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    async input(request, response, next) {
+        try {
+            const newArgonaute = request.body.name;
+            const argonaute = await dataMapper.addNewArgonaute(newArgonaute);
+
+            response.redirect("/");
+        }catch (error) {
+            next(error);
+        }
+    },
 };
 
 module.exports = mainController;
